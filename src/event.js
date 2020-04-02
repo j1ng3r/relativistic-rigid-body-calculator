@@ -1,3 +1,5 @@
+const sr = require('./sr.js');
+
 let Event = module.exports = class Event {
 	constructor() {}
 

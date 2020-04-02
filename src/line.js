@@ -1,14 +1,10 @@
-const sr = require('sr.js');
-const Event = require('event.js');
+const sr = require('./sr.js');
+const Event = require('./event.js');
 
 let Line = module.exports = class Line {
 	constructor(velocity, event) {
 		this.event = event;
 		this.velocity = velocity;
-	}
-
-	getVelocity() {
-		return this.velocity;
 	}
 
 	getEventatT(t) {
@@ -71,6 +67,9 @@ Line.Segment = class LineSegment extends Line {
 	}
 
 	setEnd(end) {
+		if(end.t < this.event.t) {
+			throw	new Error("End must come after start event");
+		}
 		this.end = end;
 		return this;
 	}
